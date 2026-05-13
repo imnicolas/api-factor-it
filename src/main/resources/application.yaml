@@ -14,7 +14,6 @@ spring:
     driver-class-name: org.postgresql.Driver
 
   # # # # # Configuración ORM # # # # #
-  # Atención: 'jpa' va al mismo nivel que 'datasource', no anidado.
   jpa:
     hibernate:
       ddl-auto: update
