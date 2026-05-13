@@ -1,31 +1,28 @@
 server:
-  port: 8080
+  # Railway inyecta su propio puerto en la variable PORT. Si no existe (local), usa 8080.
+  port: ${PORT:8080}
 
 spring:
   application:
     name: factorIT
 
-# # # # # Base de datos # # # # #
+  # # # # # Base de datos # # # # #
   datasource:
-    # Si usas Neon.tech u otro free tier, reemplaza esta URL por la que te provean
-#    url: ${DB_URL:jdbc:postgresql://localhost:5432/carrito_db}
-#    username: ${DB_USER:postgres}
-#    password: ${DB_PASSWORD:admin}
-    url: jdbc:postgresql://localhost:5432/carrito_db
-    username: postgres
-    password: postgres
+    url: ${DB_URL}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
-# # # # # Configuración ORM # # # # #
-    jpa:
+  # # # # # Configuración ORM # # # # #
+  # Atención: 'jpa' va al mismo nivel que 'datasource', no anidado.
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
       hibernate:
-        # 'update' creará/actualizará las tablas automáticamente basado en tus Entities
-        ddl-auto: update
-      show-sql: true
-      properties:
-        hibernate:
-          format_sql: true
-          dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 # Configuración de Swagger / OpenAPI
 springdoc:
