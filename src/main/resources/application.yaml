@@ -1,17 +1,29 @@
 server:
-  # Railway inyecta su propio puerto en la variable PORT. Si no existe (local), usa 8080.
+  # Render (y otros PaaS) inyectan PORT. En local, 8080.
   port: ${PORT:8080}
+  # Contenedor: escuchar en todas las interfaces para que el health check vea el puerto.
+  address: 0.0.0.0
 
 spring:
   application:
     name: factorIT
 
-  # # # # # Base de datos # # # # #
+  # # # # # Base de datos (Render + Supabase) # # # # #
   datasource:
-    # Railway define DATABASE_URL como postgresql://usuario:clave@host:puerto/db
-    # El prefijo jdbc: produce una URL JDBC válida (jdbc:postgresql://...).
-    # Valor por defecto: desarrollo local cuando no hay DATABASE_URL.
-    url: jdbc:postgresql://db.oxcxzdwrumwdypladbjw.supabase.co:5432/postgres?user=postgres&password=7dypy&7ce!R75Fx
+    # Supabase exige SSL. No incluyas user/password en la URL: caracteres como & ! # en la
+    # clave rompen el query string. Usá DB_USER y DB_PASSWORD (secret en Render).
+    #
+    # En Render → Environment, definí por ejemplo:
+    #   DB_HOST=db.xxxxx.supabase.co
+    #   DB_PORT=5432
+    #   DB_NAME=postgres
+    #   DB_USER=postgres
+    #   DB_PASSWORD=(clave completa, tal cual; sin URL-encode)
+    #
+    # Local sin SSL: DB_SSL_MODE=disable
+    url: "jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:postgres}?sslmode=${DB_SSL_MODE:require}"
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
 
   # # # # # Configuración ORM # # # # #
   jpa:
