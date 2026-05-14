@@ -8,10 +8,10 @@ spring:
 
   # # # # # Base de datos # # # # #
   datasource:
-    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
-    username: ${PGUSER}
-    password: ${PGPASSWORD}
-    driver-class-name: org.postgresql.Driver
+    # Railway define DATABASE_URL como postgresql://usuario:clave@host:puerto/db
+    # El prefijo jdbc: produce una URL JDBC válida (jdbc:postgresql://...).
+    # Valor por defecto: desarrollo local cuando no hay DATABASE_URL.
+    url: "jdbc:${DATABASE_URL:postgresql://postgres:postgres@localhost:5432/railway}"
 
   # # # # # Configuración ORM # # # # #
   jpa:
