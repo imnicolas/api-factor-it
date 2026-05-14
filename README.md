@@ -49,10 +49,10 @@ compra. (considerar el valor de lo que realmente paga el cliente por los carrito
 # Stack
 La aplicación deberá estar utilizar las siguientes pautas y tecnologías (utilice todo o lo que más conoce:
 
-Angular 7 o +
-Java 6+
+Angular 14
+Java 17
 Css
-Spring 5+ / Springboot
+Springboot 4.0.6
 JPA / Hibernate
 Exponer servicios REST (agregar proyecto postman. Usar Swagger /open API)
 Exponer servicios SOAP (agregar proyecto SOAP UI)
