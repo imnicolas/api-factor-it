@@ -11,7 +11,7 @@ spring:
     # Railway define DATABASE_URL como postgresql://usuario:clave@host:puerto/db
     # El prefijo jdbc: produce una URL JDBC válida (jdbc:postgresql://...).
     # Valor por defecto: desarrollo local cuando no hay DATABASE_URL.
-    url: "jdbc:${DATABASE_URL:postgresql://postgres:postgres@localhost:5432/railway}"
+    url: jdbc:postgresql://db.oxcxzdwrumwdypladbjw.supabase.co:5432/postgres?user=postgres&password=7dypy&7ce!R75Fx
 
   # # # # # Configuración ORM # # # # #
   jpa:
